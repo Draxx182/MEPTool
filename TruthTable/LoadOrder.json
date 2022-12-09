@@ -1,0 +1,8 @@
+{
+  "MEP_": {
+    "v0_0_0_1": {
+      "ClassImporter": "MEPImporter",
+      "Exporter":  "MEPExporter.cs"
+    }
+  }
+}
