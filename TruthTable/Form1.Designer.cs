@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Node1");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Node0", new System.Windows.Forms.TreeNode[] {
-            treeNode1});
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Node2");
+            System.Windows.Forms.TreeNode treeNode25 = new System.Windows.Forms.TreeNode("Node1");
+            System.Windows.Forms.TreeNode treeNode26 = new System.Windows.Forms.TreeNode("Node0", new System.Windows.Forms.TreeNode[] {
+            treeNode25});
+            System.Windows.Forms.TreeNode treeNode27 = new System.Windows.Forms.TreeNode("Node2");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TruthTable));
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -79,7 +79,7 @@
             this.fileToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(641, 24);
+            this.menuStrip.Size = new System.Drawing.Size(1055, 24);
             this.menuStrip.TabIndex = 0;
             this.menuStrip.Text = "menuStrip1";
             this.menuStrip.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip_ItemClicked);
@@ -181,7 +181,7 @@
             this.mepSelector.Location = new System.Drawing.Point(0, 36);
             this.mepSelector.Name = "mepSelector";
             this.mepSelector.SelectedIndex = 0;
-            this.mepSelector.Size = new System.Drawing.Size(641, 583);
+            this.mepSelector.Size = new System.Drawing.Size(1055, 583);
             this.mepSelector.TabIndex = 1;
             // 
             // Start
@@ -194,7 +194,7 @@
             this.Start.Location = new System.Drawing.Point(4, 22);
             this.Start.Name = "Start";
             this.Start.Padding = new System.Windows.Forms.Padding(3);
-            this.Start.Size = new System.Drawing.Size(633, 557);
+            this.Start.Size = new System.Drawing.Size(1047, 557);
             this.Start.TabIndex = 0;
             this.Start.Text = "Start";
             this.Start.Click += new System.EventHandler(this.Start_Click);
@@ -258,15 +258,15 @@
             this.treeView1.BackColor = System.Drawing.SystemColors.Menu;
             this.treeView1.Location = new System.Drawing.Point(-1, 31);
             this.treeView1.Name = "treeView1";
-            treeNode1.Name = "Node1";
-            treeNode1.Text = "Node1";
-            treeNode2.Name = "Node0";
-            treeNode2.Text = "Node0";
-            treeNode3.Name = "Node2";
-            treeNode3.Text = "Node2";
+            treeNode25.Name = "Node1";
+            treeNode25.Text = "Node1";
+            treeNode26.Name = "Node0";
+            treeNode26.Text = "Node0";
+            treeNode27.Name = "Node2";
+            treeNode27.Text = "Node2";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode2,
-            treeNode3});
+            treeNode26,
+            treeNode27});
             this.treeView1.Size = new System.Drawing.Size(216, 525);
             this.treeView1.TabIndex = 5;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
@@ -285,7 +285,7 @@
             this.toolStripButton3});
             this.toolStrip1.Location = new System.Drawing.Point(3, 3);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(625, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(1039, 25);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             this.toolStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.toolStrip1_ItemClicked);
@@ -369,7 +369,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(641, 620);
+            this.ClientSize = new System.Drawing.Size(1055, 620);
             this.Controls.Add(this.mepSelector);
             this.Controls.Add(this.menuStrip);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;

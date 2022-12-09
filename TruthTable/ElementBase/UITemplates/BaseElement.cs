@@ -10,10 +10,11 @@ namespace TruthTable.NodeBase
     partial class Element : TreeNode
     {
         private List<NodePanel> listOfPanels = new List<NodePanel>();
-        private NodePanel mainNodePanel;
-        private NodePanel unkNodePanel;
+        private List<NodePanel> mainNodePanels = new List<NodePanel>();
+        private List<NodePanel> unkNodePanels = new List<NodePanel>();
         private NodePanel currentPanel;
         private int panelOffset = 0;
+        private Size panelSizes;
 
         // Properties
         public List<NodePanel> ListOfPanels
@@ -22,16 +23,16 @@ namespace TruthTable.NodeBase
             set { listOfPanels = value; }
         }
 
-        public NodePanel MainData
+        public List<NodePanel> MainPanels
         {
-            get { return mainNodePanel; }
-            set { mainNodePanel = value; }
+            get { return mainNodePanels; }
+            set { mainNodePanels = value; }
         }
 
-        public NodePanel UnkData
+        public List<NodePanel> UnkPanels
         {
-            get { return unkNodePanel; }
-            set { unkNodePanel = value; }
+            get { return unkNodePanels; }
+            set { unkNodePanels = value; }
         }
 
         public NodePanel CurrentPanel
@@ -39,6 +40,8 @@ namespace TruthTable.NodeBase
             get { return currentPanel; }
             set { currentPanel = value; }
         }
+
+        // Structure
 
         // Variables
         private const string defaultName = "Unk";
@@ -73,12 +76,14 @@ namespace TruthTable.NodeBase
         }
         */
 
-        public NodePanel AddPanel(string panelHeader)
+        public NodePanel AddPanel(string panelHeader, List<NodePanel> selectedList)
         {
-            NodePanel returnPanel = Initializer.CreateNodePanel(new Point(0, 0), new Size(395, 60));
-            ListOfPanels.Add(returnPanel);
+            panelOffset = 0;
+            foreach (NodePanel panel in selectedList) panelOffset += panel.Height;
+            NodePanel returnPanel = Initializer.CreateNodePanel(new Point(0, panelOffset), panelSizes);
             returnPanel.AddHeader(panelHeader);
             currentPanel = returnPanel;
+            selectedList.Add(returnPanel);
             return returnPanel;
         }
 
@@ -93,7 +98,7 @@ namespace TruthTable.NodeBase
         /// <param name="baseReader"> Sets the Binary Reader to pass on between different Elements. </param>
         /// <param name="name"> The name of the base node listed in the TreeView. </param>
         /// <param name="expanded"> Sets if the element will preload the node as expanded. </param>
-        public Element(TreeView baseTree, BinaryReader baseReader, string name = defaultName, bool expanded = false)
+        public Element(TreeView baseTree, BinaryReader baseReader, Size nodeSize, string name = defaultName, bool expanded = false)
         {
             Text = name;
             Name = name;
@@ -105,9 +110,11 @@ namespace TruthTable.NodeBase
             rd = baseReader;
             UIType = null;
 
+            panelSizes = nodeSize;
             CanDelete = false;
-            mainNodePanel = AddPanel("Node Info");
-            unkNodePanel = AddPanel("Unknown Information");
+            AddPanel("Node Info", mainNodePanels);
+            AddPanel("Unknown Information", unkNodePanels);
+            AddPanel("Extra Info", listOfPanels);
             baseTree.Nodes.Add(this);
         }
 
@@ -120,7 +127,7 @@ namespace TruthTable.NodeBase
         /// <param name="expanded"> Sets if the element will preload the node as expanded. </param>
         /// <param name="uiType"> Sets the UI type of the Element to help decide what UI elements to load. </param>
         /// <param name="size"> Sets the size for a DataArray. </param>
-        public Element(Element baseNode, BinaryReader baseReader, string name = defaultName, bool expanded = false, string uiType = "DataGridView", int size = 0, bool deletable = false, bool copyable = false)
+        public Element(Element baseNode, BinaryReader baseReader, Size nodeSize, string name = defaultName, bool expanded = false, string uiType = "DataGridView", int size = 0, bool deletable = false, bool copyable = false)
         {
             Text = name;
             Name = name;
@@ -132,6 +139,7 @@ namespace TruthTable.NodeBase
             }
             rd = baseReader;
             UIType = uiType;
+            panelSizes = nodeSize;
             CanDelete = deletable;
             CanCopy = copyable;
 
@@ -139,8 +147,9 @@ namespace TruthTable.NodeBase
             enumedTable = new TableElement();
             colorTable = new TableElement();
 
-            mainNodePanel = AddPanel("Node Info");
-            unkNodePanel = AddPanel("Unknown Information");
+            AddPanel("Node Info", mainNodePanels);
+            AddPanel("Unknown Information", unkNodePanels);
+            AddPanel("Extra Info", listOfPanels);
             baseNode.Nodes.Add(this);
         }
 
@@ -161,7 +170,7 @@ namespace TruthTable.NodeBase
         /// <returns> The newly created element. </returns>
         public Element AddChild(string name = defaultName, bool expanded = false, bool deletable = false, bool copyable = false)
         {
-            Element child = new Element(this, rd, name, expanded, deletable : deletable, copyable : copyable);
+            Element child = new Element(this, rd, panelSizes, name, expanded, deletable : deletable, copyable : copyable);
             return child;
         }
 
@@ -198,6 +207,7 @@ namespace TruthTable.NodeBase
         }
         */
 
+        /*
         /// <summary>
         /// Adds a child which presets functions for a ListBox UI.
         /// </summary>
@@ -210,6 +220,7 @@ namespace TruthTable.NodeBase
             Element child = new Element(this, rd, name, expanded, "EnumView", deletable: deletable, copyable: copyable);
             return child;
         }
+        */
 
         /*
         /// <summary>

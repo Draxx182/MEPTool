@@ -21,11 +21,11 @@ namespace TruthTable.MEP
             control = tabControl;
             reader = rd;
             FormUIElements();
-            Element baseElement = new Element(view, reader, "MEP_");
+            Element baseElement = new Element(view, reader, new Size(395, 60), "MEP_");
 
             // File Header
-            baseElement.CurrentPanel = baseElement.MainData;
-            baseElement.MainData.AddHeader("File Header");
+            baseElement.CurrentPanel = baseElement.MainPanels[0];
+            baseElement.MainPanels[0].AddHeader("File Header");
             baseElement.ReadStr("Magic:", 4);
             Console.WriteLine(baseElement.CurrentPanel.Header);
             baseElement.ReadU8("Endianess 1");
@@ -57,7 +57,7 @@ namespace TruthTable.MEP
         {
             // A base node that doesn't show a DataGridView
             Element node = baseNode.AddChild();
-            node.CurrentPanel = node.MainData;
+            node.CurrentPanel = node.MainPanels[0];
 
             node.ReadGuid("GUID");
             // A new node for translating bones into simple enums.
@@ -80,6 +80,7 @@ namespace TruthTable.MEP
 
                 if (propertyType == 100) // Limb Flash
                 {
+                    node.AddPanel("Limb Flash Unknowns", node.MainPanels);
                     node.Text = "LimbFlash";
                     node.ReadS32("Unk 0");
                     node.ReadS32("Unk 1");
@@ -89,7 +90,7 @@ namespace TruthTable.MEP
 
                     for (int i = 1; i < 4; i++)
                     {
-                        node.AddPanel("Outer Limb Flash "+i);
+                        node.AddPanel("Outer Flash "+i, node.ListOfPanels);
                         node.ReadFloat("Flash Gradient");
                         node.ReadFloat("Red Flash Color");
                         node.ReadFloat("Green Flash Color");
@@ -98,18 +99,20 @@ namespace TruthTable.MEP
                         node.ReadFloats(size: 3);
                     }
 
-                    node.AddPanel("Limb Flash Data");
+                    node.CurrentPanel = node.UnkPanels[0];
                     node.ReadFloat();
                     node.ReadS32(translated: false);
                     node.ReadU32();
 
-                    node.CurrentPanel = node.UnkData;
+                    node.CurrentPanel = node.UnkPanels[0];
                     node.ReadFloats(size: propertySize - 45);
 
+                    node.AddPanel("Inner Limb Flash", node.ListOfPanels);
                     node.ReadFloat("Flash Opacity");
                     for (int i = 1; i < 4; i++)
                     {
-                        node.AddPanel("Inner Limb Flash "+i);
+
+                        node.AddPanel("Inner Flash " + i, node.ListOfPanels);
                         node.ReadFloat("Red Flash Color");
                         node.ReadFloat("Green Flash Color");
                         node.ReadFloat("Blue Flash Color");
@@ -117,7 +120,7 @@ namespace TruthTable.MEP
                 }
                 else
                 {
-                    node.CurrentPanel = node.UnkData;
+                    node.CurrentPanel = node.UnkPanels[0];
                     node.Text = "Unknown";
                     node.ReadU32s(size: propertySize - 3);
                 }

@@ -11,7 +11,8 @@ namespace TruthTable.MEP
     {
         private ToolStrip MEPBar;
         private Panel nodeInfoPanel;
-        private Panel nodeUnknownInfo;
+        private Panel nodeUnknownPanel;
+        private Panel nodeExtraPanel;
         private TreeView view;
 
         private void FormUIElements()
@@ -29,7 +30,8 @@ namespace TruthTable.MEP
 
             // Panel
             nodeInfoPanel = Initializer.CreatePanel(new Point(216, 25), new Size(415, 235));
-            nodeUnknownInfo = Initializer.CreatePanel(new Point(216, 260), new Size(415, 295));
+            nodeUnknownPanel = Initializer.CreatePanel(new Point(216, 260), new Size(415, 295));
+            nodeExtraPanel = Initializer.CreatePanel(new Point(631, 25), new Size(415, 530));
             /*
             Panel panel2 = Initializer.CreateNodePanel(new Point(0, 0), new Size(338, 100));
             Panel panel3 = Initializer.CreateNodePanel(new Point(0, 100), new Size(320, 100));
@@ -47,7 +49,8 @@ namespace TruthTable.MEP
             NewTab.Controls.Add(view);
             NewTab.Controls.Add(MEPBar);
             NewTab.Controls.Add(nodeInfoPanel);
-            NewTab.Controls.Add(nodeUnknownInfo);
+            NewTab.Controls.Add(nodeUnknownPanel);
+            NewTab.Controls.Add(nodeExtraPanel);
             control.TabPages.Add(NewTab);
             MenuCreate();
         }
@@ -72,11 +75,14 @@ namespace TruthTable.MEP
         {
             nodeInfoPanel.VerticalScroll.Value = 0;
             nodeInfoPanel.Controls.Clear();
-            nodeUnknownInfo.VerticalScroll.Value = 0;
-            nodeUnknownInfo.Controls.Clear();
+            nodeUnknownPanel.VerticalScroll.Value = 0;
+            nodeUnknownPanel.Controls.Clear();
+            nodeExtraPanel.VerticalScroll.Value = 0;
+            nodeExtraPanel.Controls.Clear();
             Element currentElement = (Element) view.SelectedNode;
-            CheckPanel(currentElement.MainData, nodeInfoPanel);
-            CheckPanel(currentElement.UnkData, nodeUnknownInfo);
+            foreach (NodePanel panel in currentElement.MainPanels) CheckPanel(panel, nodeInfoPanel);
+            foreach (NodePanel panel in currentElement.UnkPanels) CheckPanel(panel, nodeUnknownPanel);
+            foreach (NodePanel panel in currentElement.ListOfPanels) CheckPanel(panel, nodeExtraPanel);
         }
 
         // *---------*

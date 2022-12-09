@@ -1,0 +1,10 @@
+C:\Users\jeSpiritu\source\repos\MEPTool-master\TruthTable\bin\Debug\MEPEditor.exe.config
+C:\Users\jeSpiritu\source\repos\MEPTool-master\TruthTable\bin\Debug\MEPEditor.exe
+C:\Users\jeSpiritu\source\repos\MEPTool-master\TruthTable\bin\Debug\MEPEditor.pdb
+C:\Users\jeSpiritu\source\repos\MEPTool-master\TruthTable\obj\Debug\TruthTable.csproj.AssemblyReference.cache
+C:\Users\jeSpiritu\source\repos\MEPTool-master\TruthTable\obj\Debug\TruthTable.TruthTable.resources
+C:\Users\jeSpiritu\source\repos\MEPTool-master\TruthTable\obj\Debug\MEPEditor.Properties.Resources.resources
+C:\Users\jeSpiritu\source\repos\MEPTool-master\TruthTable\obj\Debug\TruthTable.csproj.GenerateResource.cache
+C:\Users\jeSpiritu\source\repos\MEPTool-master\TruthTable\obj\Debug\TruthTable.csproj.CoreCompileInputs.cache
+C:\Users\jeSpiritu\source\repos\MEPTool-master\TruthTable\obj\Debug\MEPEditor.exe
+C:\Users\jeSpiritu\source\repos\MEPTool-master\TruthTable\obj\Debug\MEPEditor.pdb
