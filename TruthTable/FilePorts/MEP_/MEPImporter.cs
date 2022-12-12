@@ -80,7 +80,8 @@ namespace TruthTable.MEP
 
                 if (propertyType == 100) // Limb Flash
                 {
-                    node.AddPanel("Limb Flash Unknowns", node.MainPanels);
+                    node.ListOfPanels[0].AddHeader("Limb Flash Unknowns");
+                    node.CurrentPanel = node.ListOfPanels[0];
                     node.Text = "LimbFlash";
                     node.ReadS32("Unk 0");
                     node.ReadS32("Unk 1");
